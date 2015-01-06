@@ -7,8 +7,8 @@ var creds = require('./creds.json');
 var twit = new Twit(creds);
 
 function handleError (error) {
-  console.error("OMG THERE WAS ERROR!")
   console.error(error);
+  setTimeout(derp, TIMEOUT);
 }
 
 var TIMEOUT = 120000; //two minutes
@@ -52,11 +52,13 @@ var derp = function () {
         var params = { id: status.id_str };
 
         twit.post('statuses/retweet/:id', params, function (error, reply, response) {
-          if (!error) {
+          if (error) {
+            handleError();
+          } else {
             var msg = "retweeted @" + user.screen_name + ': ' + status.text;
             console.log(msg); 
           }
-          callback(error);
+          callback();
         });
       };
 
