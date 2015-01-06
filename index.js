@@ -11,7 +11,7 @@ function handleError (error) {
   console.error(error);
 }
 
-var TIMEOUT = 10000;
+var TIMEOUT = 120000; //two minutes
 
 // TODO: go to last tweet from this account
 var startup_time = Date.now();  //est timezone
